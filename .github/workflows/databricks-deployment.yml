@@ -3,7 +3,7 @@ name: Databricks Deployment
 on:
   push:
     branches:
-      - dev
+      - jd_dev
       - master
 
 env:
