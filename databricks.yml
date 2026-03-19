@@ -9,9 +9,11 @@ targets:
     mode: development
     default: true
     workspace:
+      host: https://adb-7405606116379009.9.azuredatabricks.net/
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
     variables:
-      catalog_name: pedroz_e2edata_dev
+      catalog_name: development_catalog
+      schema_name: development_schema
       environment: dev
     # Override permissions for dev environment
     resources:
@@ -19,34 +21,36 @@ targets:
         data_ingestion_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
             - level: "CAN_MANAGE_RUN"
-              group_name: "Developers"
+              group_name: "jd-developers"
         model_training_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
             - level: "CAN_MANAGE_RUN"
-              group_name: "Developers"
+              group_name: "jd-developers"
         model_deployment_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
             - level: "CAN_MANAGE_RUN"
-              group_name: "Developers"
+              group_name: "jd-developers"
         batch_inference_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
             - level: "CAN_MANAGE_RUN"
-              group_name: "Developers"
+              group_name: "jd-developers"
 
   prod:
     mode: production
     workspace:
+      host: https://adb-7405606653490162.2.azuredatabricks.net/
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
     variables:
-      catalog_name: pedroz_e2edata_prod
+      catalog_name: production_catalog
+      schema_name: production_schema
       environment: prod
     
     # Override permissions for prod environment (only PowerUsers group)
@@ -55,24 +59,27 @@ targets:
         data_ingestion_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
         model_training_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
         model_deployment_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
         batch_inference_job:
           permissions:
             - level: "CAN_MANAGE"
-              group_name: "PowerUsers"
+              group_name: "jd-power_users"
 
 variables:
   catalog_name:
     description: "Name of the Unity Catalog to use"
     default: "default_catalog"
+  schema_name:
+    description: "Name of the schema to use"
+    default: "default_schema"
   environment:
     description: "Environment name (dev/prod)"
     default: "dev"
