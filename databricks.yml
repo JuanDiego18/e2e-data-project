@@ -75,10 +75,10 @@ targets:
 
 variables:
   catalog_name:
-    description: "Name of the Unity Catalog to use"
+    description: "Name of the Unity Catalog catalog to use"
     default: "default_catalog"
   schema_name:
-    description: "Name of the schema to use"
+    description: "Name of the Unity Catalog schema to use"
     default: "default_schema"
   environment:
     description: "Environment name (dev/prod)"
